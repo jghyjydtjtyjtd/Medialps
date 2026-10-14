@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_PATH: /data/videos.db
+    volumes:
+      - ptite-source-data:/data
+    ports:
+      - "127.0.0.1:3000:3000"   # exposé uniquement en local : placez un proxy HTTPS devant (Caddy, Nginx…)
+
+volumes:
+  ptite-source-data:
